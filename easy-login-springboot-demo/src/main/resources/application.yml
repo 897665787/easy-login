@@ -1,0 +1,25 @@
+server:
+  port: 4001
+
+spring:
+  application:
+    name: springbootdemo
+    
+easylogin:
+  weixinMiniapp: # 微信小程序登录方式一
+    appid: 1111 #微信小程序的appid
+    secret: 1111 #微信小程序的Secret
+    token: 1111 #微信小程序消息服务器配置的token
+    aesKey: 1111 #微信小程序消息服务器配置的EncodingAESKey
+    msgDataFormat: JSON
+  weixinMiniappMobile: # 微信小程序登录方式二
+    appid: 1111 #微信小程序的appid
+    secret: 1111 #微信小程序的Secret
+    token: 1111 #微信小程序消息服务器配置的token
+    aesKey: 1111 #微信小程序消息服务器配置的EncodingAESKey
+    msgDataFormat: JSON
+  weixinApp:
+    appid: 1111 #微信小程序的appid
+    secret: 1111 #微信小程序的Secret
+    token: 1111 #微信小程序消息服务器配置的token
+    aesKey: 1111 #微信小程序消息服务器配置的EncodingAESKey

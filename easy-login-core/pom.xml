@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>com.jqdi</groupId>
+		<artifactId>easy-login</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>easy-login-core</artifactId>
+	<packaging>jar</packaging>
+
+	<description>核心代码</description>
+
+	<dependencies>
+		<!-- 工具依赖 -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+			<version>1.18.26</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.12.0</version>
+		</dependency>
+		<!-- 工具依赖 -->
+
+		<!-- 阿里云：本机号码一键登录 -->
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>dypnsapi20170525</artifactId>
+			<version>1.2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- binarywang：微信小程序授权登录 -->
+		<dependency>
+			<groupId>com.github.binarywang</groupId>
+			<artifactId>weixin-java-miniapp</artifactId>
+			<version>4.3.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- binarywang：微信公众号/APP授权登录 -->
+		<dependency>
+			<groupId>com.github.binarywang</groupId>
+			<artifactId>weixin-java-mp</artifactId>
+			<version>4.3.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!--支付宝sdk-->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>4.35.0.ALL</version>
+            <scope>provided</scope>
+        </dependency>
+
+	</dependencies>
+</project>
