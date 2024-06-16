@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.jqdi.easylogin.core.enums.IdentityType;
 import com.jqdi.easylogin.core.repository.OauthRepository;
 
 import lombok.Data;
@@ -37,7 +36,7 @@ public class MysqlOauthRepository implements OauthRepository {
 	int autoIncr = 1;
 	
 	@Override
-	public String getUserId(IdentityType identityType, String identifier) {
+	public String getUserId(String identityType, String identifier) {
 		CacheKey cacheKey = new CacheKey().setIdentityType(identityType).setIdentifier(identifier);
 		CacheValue cacheValue = cache.get(cacheKey);
 		if (cacheValue == null) {
@@ -47,7 +46,7 @@ public class MysqlOauthRepository implements OauthRepository {
 	}
 
 	@Override
-	public void bindOauth(String userId, IdentityType identityType, String identifier, String certificate) {
+	public void bindOauth(String userId, String identityType, String identifier, String certificate) {
 		CacheKey cacheKey = new CacheKey().setIdentityType(identityType).setIdentifier(identifier);
 		CacheValue cacheValue = cache.get(cacheKey);
 		if (cacheValue == null) {
@@ -57,7 +56,7 @@ public class MysqlOauthRepository implements OauthRepository {
 	}
 
 	@Override
-	public String registerUser(IdentityType identityType, String identifier, String nickname, String avatar) {
+	public String registerUser(String identityType, String identifier, String nickname, String avatar) {
 		CacheKey cacheKey = new CacheKey().setIdentityType(identityType).setIdentifier(identifier);
 		CacheValue cacheValue = cache.get(cacheKey);
 		if (cacheValue == null) {
@@ -70,7 +69,7 @@ public class MysqlOauthRepository implements OauthRepository {
 	@Data
 	@Accessors(chain = true)
 	public static class CacheKey {
-		IdentityType identityType;
+		String identityType;
 		String identifier;
 	}
 

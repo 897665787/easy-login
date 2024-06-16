@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Lists;
 import com.jqdi.easylogin.core.LoginClient;
-import com.jqdi.easylogin.core.enums.IdentityType;
+import com.jqdi.easylogin.core.constants.IdentityType;
 import com.jqdi.easylogin.core.exception.LoginException;
 import com.jqdi.easylogin.core.model.BindAuthCode;
 import com.jqdi.easylogin.core.model.BindAuthCode.BindUserOauth;

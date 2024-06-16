@@ -2,8 +2,6 @@ package com.jqdi.easylogin.core.model;
 
 import java.util.List;
 
-import com.jqdi.easylogin.core.enums.IdentityType;
-
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -27,7 +25,7 @@ public class BindAuthCode {
 	@Data
 	@Accessors(chain = true)
 	public static class BindUserOauth {
-		private IdentityType identityType;
+		private String identityType;
 		private String identifier;
 	}
 }

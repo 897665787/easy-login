@@ -3,7 +3,7 @@ package com.jqdi.easylogin.core.mobile;
 import org.apache.commons.lang3.StringUtils;
 
 import com.jqdi.easylogin.core.LoginClient;
-import com.jqdi.easylogin.core.enums.IdentityType;
+import com.jqdi.easylogin.core.constants.IdentityType;
 import com.jqdi.easylogin.core.exception.LoginException;
 import com.jqdi.easylogin.core.mobile.request.ILocalMobileRequest;
 import com.jqdi.easylogin.core.repository.OauthRepository;
