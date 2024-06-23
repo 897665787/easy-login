@@ -18,9 +18,7 @@ import com.jqdi.easylogin.core.wx.mp.model.MpUserInfo;
 import com.jqdi.easylogin.core.wx.mp.request.IMpRequest;
 
 /**
- * <pre>
- * 官网：https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html
- * </pre>
+ * 公众号微信授权登录
  * 
  * @author JQ棣
  */
@@ -36,6 +34,11 @@ public class WeixinMpClient implements LoginClient {
 		this.mpRequest = mpRequest;
 	}
 
+	/**
+	 * <pre>
+	 * 官网：https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_webpage_authorization.html
+	 * </pre>
+	 */
 	@Override
 	public String login(String ignore1, String ignore2, String wxcode) {
 		if (StringUtils.isBlank(wxcode)) {

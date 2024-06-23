@@ -10,6 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxError;
 import me.chanjar.weixin.common.error.WxErrorException;
 
+/**
+ * Binarywang SDK实现
+ * 
+ * @author JQ棣
+ */
 @Slf4j
 public class BinarywangMaMobileRequest implements IMaMobileRequest {
 
@@ -27,15 +32,20 @@ public class BinarywangMaMobileRequest implements IMaMobileRequest {
 		wxMaService.setWxMaConfig(config);
 	}
 
+	/**
+	 * 获取手机号
+	 * 
+	 * <pre>
+	 * 官网（新版获取手机号）：https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html
+	 * </pre>
+	 */
 	@Override
 	public String getMobile(String code) {
 		try {
+			WxMaPhoneNumberInfo phoneNoInfo = wxMaService.getUserService().getNewPhoneNoInfo(code);
+			log.debug("WxMaPhoneNumberInfo:{}", phoneNoInfo);
 			/**
-			 * 获取手机号
-			 * 
 			 * <pre>
-			 * 官网（新版获取手机号）：https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html
-			 * 
 			{
 				"errcode": 0,
 				"errmsg": "ok",
@@ -51,7 +61,7 @@ public class BinarywangMaMobileRequest implements IMaMobileRequest {
 			}
 			 * </pre>
 			 */
-			WxMaPhoneNumberInfo phoneNoInfo = wxMaService.getUserService().getNewPhoneNoInfo(code);
+			
 			if (phoneNoInfo == null) {
 				throw new LoginException("未获取到手机号码");
 			}

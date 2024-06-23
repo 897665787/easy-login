@@ -13,6 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.common.error.WxError;
 import me.chanjar.weixin.common.error.WxErrorException;
 
+/**
+ * Binarywang SDK实现
+ * 
+ * @author JQ棣
+ */
 @Slf4j
 public class BinarywangMaRequest implements IMaRequest {
 
@@ -31,7 +36,10 @@ public class BinarywangMaRequest implements IMaRequest {
 	}
 
 	/**
+	 * <pre>
 	 * 特殊使用场景：未登录前端又需要openid、unionid
+	 * 官网：https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html
+	 * </pre>
 	 */
 	@Override
 	public MaSession getSessionInfo(String code) {
@@ -41,12 +49,10 @@ public class BinarywangMaRequest implements IMaRequest {
 		try {
 			/**
 			 * 获取sessionKey、openid、unionid
-			 * 
-			 * <pre>
-			 * 官网：https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html
-			 * </pre>
 			 */
 			WxMaJscode2SessionResult session = wxMaService.getUserService().getSessionInfo(code);
+			log.debug("WxMaJscode2SessionResult:{}", session);
+			
 			maSession.setSessionKey(session.getSessionKey());
 			maSession.setOpenid(session.getOpenid());
 			maSession.setUnionid(session.getUnionid());
@@ -58,21 +64,27 @@ public class BinarywangMaRequest implements IMaRequest {
 		return maSession;
 	}
 	
+	/**
+	 * 获取手机号
+	 * 
+	 * <pre>
+	 * 官网（旧版获取手机号）：https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/deprecatedGetPhoneNumber.html
+	 * 
+	 * 注意事项：在回调中调用 wx.login 登录，可能会刷新登录态。此时服务器使用 code 换取的 sessionKey 不是加密时使用的 sessionKey，导致解密失败。建议开发者提前进行 login；或者在回调中先使用 checkSession 进行登录态检查，避免 login 刷新登录态。
+	 * </pre>
+	 */
 	@Override
 	public MaSessionPhoneNumber getSessionInfoAndPhoneNumber(String encryptedData, String iv, String code) {
 		MaSessionPhoneNumber maSessionPhoneNumber = new MaSessionPhoneNumber();
 		
 		MaSession maSession = getSessionInfo(code);
 		maSessionPhoneNumber.setMaSession(maSession);
-		
+
+		WxMaPhoneNumberInfo phoneNoInfo = wxMaService.getUserService().getPhoneNoInfo(maSession.getSessionKey(),
+				encryptedData, iv);
+		log.debug("WxMaPhoneNumberInfo:{}", phoneNoInfo);
 		/**
-		 * 获取手机号
-		 * 
 		 * <pre>
-		 * 官网（旧版获取手机号）：https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/deprecatedGetPhoneNumber.html
-		 * 
-		 * 注意事项：在回调中调用 wx.login 登录，可能会刷新登录态。此时服务器使用 code 换取的 sessionKey 不是加密时使用的 sessionKey，导致解密失败。建议开发者提前进行 login；或者在回调中先使用 checkSession 进行登录态检查，避免 login 刷新登录态。
-		 * 
 		{
 			"phoneNumber": "13580006666",
 			"purePhoneNumber": "13580006666",
@@ -84,8 +96,7 @@ public class BinarywangMaRequest implements IMaRequest {
 		}
 		 * </pre>
 		 */
-		WxMaPhoneNumberInfo phoneNoInfo = wxMaService.getUserService().getPhoneNoInfo(maSession.getSessionKey(),
-				encryptedData, iv);
+		
 		maSessionPhoneNumber.setPhoneNumber(phoneNoInfo.getPhoneNumber());
 		return maSessionPhoneNumber;
 	}

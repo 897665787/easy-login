@@ -8,6 +8,11 @@ import com.jqdi.easylogin.core.exception.LoginException;
 import com.jqdi.easylogin.core.repository.OauthRepository;
 import com.jqdi.easylogin.core.wx.miniappmobile.request.IMaMobileRequest;
 
+/**
+ * 微信小程序登录
+ * 
+ * @author JQ棣
+ */
 public class WeixinMiniappMobileClient implements LoginClient {
 	private OauthRepository oauthRepository;
 	private IMaMobileRequest maMobileRequest;

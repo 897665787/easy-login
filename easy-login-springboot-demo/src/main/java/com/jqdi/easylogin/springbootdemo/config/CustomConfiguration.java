@@ -13,6 +13,12 @@ import com.jqdi.easylogin.spring.boot.starter.LoginType;
 @Configuration
 public class CustomConfiguration {
 
+	/**
+	 * 定义相同bean名称的登录方式，EasyLoginAutoConfiguration中相同名字的bean就不会初始化
+	 * 
+	 * @param oauthRepository
+	 * @return
+	 */
 	@Bean(LoginType.WEIXIN_MINIAPP)
 	LoginClient weixinMiniappService(OauthRepository oauthRepository) {
 		String appid = "aaa";

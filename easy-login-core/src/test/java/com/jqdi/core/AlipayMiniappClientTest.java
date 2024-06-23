@@ -4,7 +4,7 @@ import com.jqdi.core.repository.CacheOauthRepository;
 import com.jqdi.easylogin.core.LoginClient;
 import com.jqdi.easylogin.core.ali.miniapp.AlipayMiniappClient;
 import com.jqdi.easylogin.core.ali.miniapp.request.AlipayMaRequest;
-import com.jqdi.easylogin.core.ali.miniapp.request.IAliMaRequest;
+import com.jqdi.easylogin.core.ali.miniapp.request.IAlipayMaRequest;
 import com.jqdi.easylogin.core.repository.OauthRepository;
 
 public class AlipayMiniappClientTest {
@@ -17,13 +17,13 @@ public class AlipayMiniappClientTest {
 		String privateKey = "LTAIkcl1bVhsEpGf";
 		String publicKey = "13sa1d3s1adsadsdsd6sa51d651";
 
-		IAliMaRequest aliMaRequest = new AlipayMaRequest(aesKey, appid, privateKey, publicKey);
+		IAlipayMaRequest aliMaRequest = new AlipayMaRequest(aesKey, appid, privateKey, publicKey);
 		LoginClient loginClient = new AlipayMiniappClient(oauthRepository, aliMaRequest);
 
 		String encryptedData = "aaaaaaaaa";
-		String wxcode = "aaaaaa";
+		String authcode = "aaaaaa";
 
-		String userId = loginClient.login(encryptedData, null, wxcode);
+		String userId = loginClient.login(encryptedData, null, authcode);
 		System.out.println(userId);
 	}
 }

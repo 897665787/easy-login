@@ -15,8 +15,13 @@ import com.jqdi.easylogin.core.exception.LoginException;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 支付宝SDK实现
+ * 
+ * @author JQ棣
+ */
 @Slf4j
-public class AlipayMaMobileRequest implements IAliMaMobileRequest {
+public class AlipayMaMobileRequest implements IAlipayMaMobileRequest {
 	private static final String PAY_URL = "https://openapi.alipay.com/gateway.do";
 
 	private String appid;
@@ -36,18 +41,17 @@ public class AlipayMaMobileRequest implements IAliMaMobileRequest {
 	 * </pre>
 	 */
 	@Override
-	public AliMobileUserId getPhoneNumber(String code) {
+	public AliMobileUserId getPhoneNumber(String authcode) {
 		try {
-
 			AlipaySystemOauthTokenRequest oauthTokenRequest = new AlipaySystemOauthTokenRequest();
 			oauthTokenRequest.setGrantType("authorization_code");
-			oauthTokenRequest.setCode(code);
+			oauthTokenRequest.setCode(authcode);
 
 			AlipayClient alipayClient = new DefaultAlipayClient(PAY_URL, appid, privateKey, AlipayConstants.FORMAT_JSON,
 					AlipayConstants.CHARSET_UTF8, publicKey, AlipayConstants.SIGN_TYPE_RSA2);
 
 			AlipaySystemOauthTokenResponse oauthTokenResponse = alipayClient.execute(oauthTokenRequest);
-			log.debug("oauthTokenResponse:{}", oauthTokenResponse);
+			log.debug("AlipaySystemOauthTokenResponse:{}", oauthTokenResponse);
 
 			AliMobileUserId aliMobileUserId = new AliMobileUserId();
 			if (!oauthTokenResponse.isSuccess()) {
@@ -59,7 +63,7 @@ public class AlipayMaMobileRequest implements IAliMaMobileRequest {
 
 			AlipayUserInfoShareRequest shareRequest = new AlipayUserInfoShareRequest();
 			AlipayUserInfoShareResponse shareResponse = alipayClient.execute(shareRequest, accessToken);
-			log.debug("shareResponse:{}", shareResponse);
+			log.debug("AlipayUserInfoShareResponse:{}", shareResponse);
 
 			if (!shareResponse.isSuccess()) {
 				String message = oauthTokenResponse.getMsg();

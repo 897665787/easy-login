@@ -10,7 +10,7 @@ public interface OauthRepository {
 	 * 获取用户ID
 	 * 
 	 * @param identityType
-	 *            认证类型
+	 *            认证类型,{@link com.jqdi.easylogin.core.constants.IdentityType}
 	 * @param identifier
 	 *            手机号、邮箱、用户名或第三方应用的唯一标识
 	 * @return 用户ID
@@ -23,7 +23,7 @@ public interface OauthRepository {
 	 * @param userId
 	 *            用户ID
 	 * @param identityType
-	 *            认证类型
+	 *            认证类型,{@link com.jqdi.easylogin.core.constants.IdentityType}
 	 * @param identifier
 	 *            手机号、邮箱、用户名或第三方应用的唯一标识
 	 * @param certificate
@@ -35,7 +35,7 @@ public interface OauthRepository {
 	 * 注册用户
 	 * 
 	 * @param identityType
-	 *            认证类型
+	 *            认证类型,{@link com.jqdi.easylogin.core.constants.IdentityType}
 	 * @param identifier
 	 *            手机号、邮箱、用户名或第三方应用的唯一标识
 	 * @param nickname

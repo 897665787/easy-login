@@ -10,6 +10,11 @@ import com.jqdi.easylogin.core.wx.miniapp.model.MaSession;
 import com.jqdi.easylogin.core.wx.miniapp.model.MaSessionPhoneNumber;
 import com.jqdi.easylogin.core.wx.miniapp.request.IMaRequest;
 
+/**
+ * 微信小程序登录
+ * 
+ * @author JQ棣
+ */
 public class WeixinMiniappClient implements LoginClient {
 	private OauthRepository oauthRepository;
 	private IMaRequest maRequest;

@@ -8,6 +8,11 @@ import com.jqdi.easylogin.core.exception.LoginException;
 import com.jqdi.easylogin.core.repository.VerifycodeRepository;
 import com.jqdi.easylogin.core.repository.OauthRepository;
 
+/**
+ * 手机号+验证码登录
+ * 
+ * @author JQ棣
+ */
 public class MobileCodeClient implements LoginClient {
 	private OauthRepository oauthRepository;
 	private VerifycodeRepository verifycodeRepository;

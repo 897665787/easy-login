@@ -1,6 +1,6 @@
 一个封装了登录的框架，支持密码、本机号码一键登录、微信授权登录（小程序、APP、公众号）、支付宝授权登录（小程序）等
 
-### 平台支持
+### 登录方式支持
 
 | 登录方式                   | 已实现 |
 | -------------------------- |--------|
@@ -10,7 +10,6 @@
 | 本机号码一键登录           | √      |
 | 手机号+验证码              | √      |
 | 邮箱+验证码                | √      |
-| 本机号码一键登录           | √      |
 | 微信授权登录（APP）        | √      |
 | 微信授权登录（小程序）     | √      |
 | 微信授权登录（公众号）     | √      |
@@ -33,6 +32,25 @@ easy-login
 └── easy-login-spring-boot-starter -- 整合springboot代码
 └── easy-login-springboot-demo -- 在springboot中使用easy-login的demo代码
 ```
+
+### SpringBoot自动装配条件
+
+| 登录方式                   | 实现类                        | 装配条件                                    |
+| -------------------------- | ----------------------------- |---------------------------------------------|
+| 用户名+密码                | UsernamePasswordClient        | 实现PasswordRepository                      |
+| 手机号+密码            	 | MobilePasswordClient          | 实现PasswordRepository                      |
+| 邮箱+密码                  | EmailPasswordClient           | 实现PasswordRepository                      |
+| 本机号码一键登录           | LocalMobileClient             | 配置easylogin.localMobile.accessKeyId       |
+| 手机号+验证码              | MobileCodeClient              | 实现VerifycodeRepository                    |
+| 手机号+验证码+绑定授权     | MobileCodeBindClient          | 实现VerifycodeRepository                    |
+| 邮箱+验证码                | EmailCodeClient               | 实现VerifycodeRepository                    |
+| 邮箱+验证码+绑定授权       | EmailCodeBindClient           | 实现VerifycodeRepository                    |
+| 微信授权登录（APP）        | WeixinAppClient               | 配置easylogin.weixinApp.appid               |
+| 微信授权登录（小程序）     | WeixinMiniappClient           | 配置easylogin.weixinMiniapp.appid           |
+| 微信授权登录（小程序）     | WeixinMiniappMobileClient     | 配置easylogin.weixinMiniappMobile.appid     |
+| 微信授权登录（公众号）     | WeixinMpClient                | 配置easylogin.weixinMp.appid                |
+| 支付宝授权登录（小程序）   | AlipayMiniappClient           | 配置easylogin.alipayMiniapp.appid           |
+| 支付宝授权登录（小程序）   | AlipayMiniappMobileClient     | 配置easylogin.alipayMiniappMobile.appid     |
 
 ### 使用说明
 

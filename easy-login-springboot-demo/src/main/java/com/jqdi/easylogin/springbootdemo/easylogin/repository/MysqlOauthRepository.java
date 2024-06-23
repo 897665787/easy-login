@@ -1,10 +1,11 @@
-package com.jqdi.easylogin.springbootdemo.repository;
+package com.jqdi.easylogin.springbootdemo.easylogin.repository;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
+import com.jqdi.easylogin.core.constants.IdentityType;
 import com.jqdi.easylogin.core.repository.OauthRepository;
 
 import lombok.Data;
@@ -16,12 +17,14 @@ public class MysqlOauthRepository implements OauthRepository {
 	 * 模拟表结构存储
 	 * 
 	 * <pre>
-	CREATE TABLE `bu_user_oauth` (
+	CREATE TABLE `user_oauth` (
 	  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
-	  `user_id` int(11) NOT NULL COMMENT 'bu_user_info.id',
+	  
+	  `user_id` int(11) NOT NULL COMMENT 'user_info.id',
 	  `identity_type` varchar(32) NOT NULL COMMENT '账号类型(mobile:手机号,wx-unionid:微信unionid,wx-openid-miniapp:微信小程序openid,wx-openid-mp:微信公众号openid,email:邮箱,username:用户名,sina:新浪微博,qq:QQ)',
 	  `identifier` varchar(32) NOT NULL COMMENT '手机号、邮箱、用户名或第三方应用的唯一标识',
 	  `certificate` varchar(255) DEFAULT NULL COMMENT '凭证(站内的保存密码，站外的不保存或保存token)',
+	  
 	  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
 	  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
 	  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -31,9 +34,16 @@ public class MysqlOauthRepository implements OauthRepository {
 	) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COMMENT='用户认证表';
 	 * </pre>
 	 */
-	Map<CacheKey, CacheValue> cache = new HashMap<>();
-
+	
 	int autoIncr = 1;
+	Map<CacheKey, CacheValue> cache = new HashMap<>();
+	{
+		int id = autoIncr++;
+		cache.put(new CacheKey().setIdentityType(IdentityType.EMAIL).setIdentifier("6666666@qq.com"),
+				new CacheValue().setUserId(String.valueOf(id)).setCertificate(null));
+		cache.put(new CacheKey().setIdentityType(IdentityType.MOBILE).setIdentifier("18666666666"),
+				new CacheValue().setUserId(String.valueOf(id)).setCertificate(null));
+	}
 	
 	@Override
 	public String getUserId(String identityType, String identifier) {

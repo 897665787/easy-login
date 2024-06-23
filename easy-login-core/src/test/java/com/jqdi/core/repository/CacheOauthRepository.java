@@ -3,6 +3,7 @@ package com.jqdi.core.repository;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.jqdi.easylogin.core.constants.IdentityType;
 import com.jqdi.easylogin.core.repository.OauthRepository;
 
 import lombok.Data;
@@ -11,6 +12,13 @@ import lombok.experimental.Accessors;
 public class CacheOauthRepository implements OauthRepository {
 	int autoIncr = 1;
 	Map<CacheKey, CacheValue> cache = new HashMap<>();
+	{
+		int id = autoIncr++;
+		cache.put(new CacheKey().setIdentityType(IdentityType.EMAIL).setIdentifier("6666666@qq.com"),
+				new CacheValue().setUserId(String.valueOf(id)).setCertificate(null));
+		cache.put(new CacheKey().setIdentityType(IdentityType.MOBILE).setIdentifier("18666666666"),
+				new CacheValue().setUserId(String.valueOf(id)).setCertificate(null));
+	}
 
 	@Override
 	public String getUserId(String identityType, String identifier) {

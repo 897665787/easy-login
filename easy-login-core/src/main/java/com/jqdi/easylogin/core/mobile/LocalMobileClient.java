@@ -8,6 +8,11 @@ import com.jqdi.easylogin.core.exception.LoginException;
 import com.jqdi.easylogin.core.mobile.request.ILocalMobileRequest;
 import com.jqdi.easylogin.core.repository.OauthRepository;
 
+/**
+ * 本地手机号一键登录
+ * 
+ * @author JQ棣
+ */
 public class LocalMobileClient implements LoginClient {
 	private OauthRepository oauthRepository;
 	private ILocalMobileRequest localMobileRequest;

@@ -18,9 +18,7 @@ import com.jqdi.easylogin.core.wx.mp.model.MpUserInfo;
 import com.jqdi.easylogin.core.wx.mp.request.IMpRequest;
 
 /**
- * <pre>
- * 官网：https://developers.weixin.qq.com/doc/oplatform/Mobile_App/WeChat_Login/Development_Guide.html
- * </pre>
+ * APP微信授权登录
  * 
  * @author JQ棣
  */
@@ -35,6 +33,11 @@ public class WeixinAppClient implements LoginClient {
 		this.mpRequest = mpRequest;
 	}
 	
+	/**
+	 * <pre>
+	 * 官网：https://developers.weixin.qq.com/doc/oplatform/Mobile_App/WeChat_Login/Development_Guide.html
+	 * </pre>
+	 */
 	@Override
 	public String login(String ignore1, String ignore2, String wxcode) {
 		if (StringUtils.isBlank(wxcode)) {
@@ -89,7 +92,7 @@ public class WeixinAppClient implements LoginClient {
 					new BindUserOauth().setIdentityType(IdentityType.WX_UNIONID).setIdentifier(unionid));
 			mobileBindAuthCode.setBinds(binds);
 			oauthTempRepository.saveBindAuthCode(wxcode, mobileBindAuthCode);
-				
+			
 			// 微信没有绑定账号
 			return null;
 		}

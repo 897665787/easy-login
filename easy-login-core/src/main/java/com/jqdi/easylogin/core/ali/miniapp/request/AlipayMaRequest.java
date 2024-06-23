@@ -16,8 +16,13 @@ import com.jqdi.easylogin.core.exception.LoginException;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 支付宝SDK实现
+ * 
+ * @author JQ棣
+ */
 @Slf4j
-public class AlipayMaRequest implements IAliMaRequest {
+public class AlipayMaRequest implements IAlipayMaRequest {
 	private static final String PAY_URL = "https://openapi.alipay.com/gateway.do";
 	private static final String SUCCESS_CODE = "10000";
 
@@ -125,7 +130,7 @@ public class AlipayMaRequest implements IAliMaRequest {
 					AlipayConstants.CHARSET_UTF8, publicKey, AlipayConstants.SIGN_TYPE_RSA2);
 
 			AlipaySystemOauthTokenResponse oauthTokenResponse = alipayClient.execute(oauthTokenRequest);
-			log.debug("oauthTokenResponse:{}", oauthTokenResponse);
+			log.debug("AlipaySystemOauthTokenResponse:{}", oauthTokenResponse);
 
 			if (!oauthTokenResponse.isSuccess()) {
 				String message = oauthTokenResponse.getMsg();

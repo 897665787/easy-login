@@ -12,14 +12,19 @@ import com.jqdi.easylogin.core.exception.LoginException;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * 阿里云一键登录API实现
+ * 
+ * @author JQ棣
+ */
 @Slf4j
-public class AliOneKeyLoginRequest implements ILocalMobileRequest {
+public class AliyunOneKeyLoginRequest implements ILocalMobileRequest {
 	private static final Integer STATUS_CODE_SUCCESS = 0;
 	private static final String BODY_CODE_SUCCESS = "OK";
 
 	private Client client;
 
-	public AliOneKeyLoginRequest(String accessKeyId, String accessKeySecret, String endpoint) {
+	public AliyunOneKeyLoginRequest(String accessKeyId, String accessKeySecret, String endpoint) {
 		Config config = new Config().setAccessKeyId(accessKeyId).setAccessKeySecret(accessKeySecret)
 				.setEndpoint(endpoint);
 		try {
@@ -29,17 +34,19 @@ public class AliOneKeyLoginRequest implements ILocalMobileRequest {
 		}
 	}
 
+	/**
+	 * 获取手机号
+	 * 
+	 * <pre>
+	 * 官网：https://help.aliyun.com/zh/pnvs/developer-reference/api-dypnsapi-2017-05-25-getmobile
+	 * </pre>
+	 */
 	@Override
 	public String getMobile(String accessToken) {
 		try {
-			/**
-			 * 获取手机号
-			 * 
-			 * <pre>
-			 * 官网：https://help.aliyun.com/zh/pnvs/developer-reference/api-dypnsapi-2017-05-25-getmobile
-			 * </pre>
-			 */
 			GetMobileRequest request = new GetMobileRequest().setAccessToken(accessToken);
+			GetMobileResponse response = client.getMobileWithOptions(request, new RuntimeOptions());
+			log.debug("GetMobileResponse:{}", response);
 			/**
 			 * <pre>
 			{
@@ -52,7 +59,7 @@ public class AliOneKeyLoginRequest implements ILocalMobileRequest {
 			}
 			 * </pre>
 			 */
-			GetMobileResponse response = client.getMobileWithOptions(request, new RuntimeOptions());
+			
 			Integer statusCode = response.getStatusCode();
 			if (STATUS_CODE_SUCCESS.equals(statusCode)) {
 				throw new LoginException("StatusCode error:" + statusCode);

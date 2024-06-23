@@ -1,5 +1,10 @@
 package com.jqdi.easylogin.core;
 
+/**
+ * 登录API
+ * 
+ * @author JQ棣
+ */
 public interface LoginClient {
 	/**
 	 * 登录

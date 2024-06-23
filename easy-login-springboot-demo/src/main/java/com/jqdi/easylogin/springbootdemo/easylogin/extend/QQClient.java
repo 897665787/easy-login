@@ -1,12 +1,13 @@
-package com.jqdi.easylogin.springbootdemo.config;
+package com.jqdi.easylogin.springbootdemo.easylogin.extend;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
 
 import com.jqdi.easylogin.core.LoginClient;
-import com.jqdi.easylogin.core.constants.IdentityType;
 import com.jqdi.easylogin.core.exception.LoginException;
 import com.jqdi.easylogin.core.repository.OauthRepository;
 
+@Component
 public class QQClient implements LoginClient {
 	private OauthRepository oauthRepository;
 
@@ -22,10 +23,10 @@ public class QQClient implements LoginClient {
 
 		String mobile = "13988888888";
 		
-		String userId = oauthRepository.getUserId(IdentityType.MOBILE, mobile);
+		String userId = oauthRepository.getUserId("qq", mobile);
 		if (userId == null) {// 账号不存在
 			// 创建新用户
-			userId = oauthRepository.registerUser(IdentityType.MOBILE, mobile, null, null);
+			userId = oauthRepository.registerUser("qq", mobile, null, null);
 		}
 
 		// 绑定用户与openid关系

@@ -8,6 +8,11 @@ import com.jqdi.easylogin.core.exception.LoginException;
 import com.jqdi.easylogin.core.repository.PasswordRepository;
 import com.jqdi.easylogin.core.repository.OauthRepository;
 
+/**
+ * 邮箱+密码登录
+ * 
+ * @author JQ棣
+ */
 public class EmailPasswordClient implements LoginClient {
 
 	private OauthRepository oauthRepository;

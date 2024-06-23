@@ -25,7 +25,13 @@ public class BindAuthCode {
 	@Data
 	@Accessors(chain = true)
 	public static class BindUserOauth {
+		/**
+		 * 认证类型,{@link com.jqdi.easylogin.core.constants.IdentityType}
+		 */
 		private String identityType;
+		/**
+		 * 手机号、邮箱、用户名或第三方应用的唯一标识
+		 */
 		private String identifier;
 	}
 }

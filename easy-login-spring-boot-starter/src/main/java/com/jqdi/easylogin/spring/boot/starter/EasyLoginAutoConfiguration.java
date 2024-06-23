@@ -10,23 +10,24 @@ import org.springframework.context.annotation.Configuration;
 import com.jqdi.easylogin.core.LoginClient;
 import com.jqdi.easylogin.core.ali.miniapp.AlipayMiniappClient;
 import com.jqdi.easylogin.core.ali.miniapp.request.AlipayMaRequest;
-import com.jqdi.easylogin.core.ali.miniapp.request.IAliMaRequest;
+import com.jqdi.easylogin.core.ali.miniapp.request.IAlipayMaRequest;
 import com.jqdi.easylogin.core.ali.miniappmobile.AlipayMiniappMobileClient;
 import com.jqdi.easylogin.core.ali.miniappmobile.request.AlipayMaMobileRequest;
-import com.jqdi.easylogin.core.ali.miniappmobile.request.IAliMaMobileRequest;
+import com.jqdi.easylogin.core.ali.miniappmobile.request.IAlipayMaMobileRequest;
 import com.jqdi.easylogin.core.email.EmailCodeBindClient;
 import com.jqdi.easylogin.core.email.EmailCodeClient;
 import com.jqdi.easylogin.core.mobile.LocalMobileClient;
 import com.jqdi.easylogin.core.mobile.MobileCodeBindClient;
 import com.jqdi.easylogin.core.mobile.MobileCodeClient;
-import com.jqdi.easylogin.core.mobile.request.AliOneKeyLoginRequest;
+import com.jqdi.easylogin.core.mobile.request.AliyunOneKeyLoginRequest;
 import com.jqdi.easylogin.core.mobile.request.ILocalMobileRequest;
+import com.jqdi.easylogin.core.password.EmailPasswordClient;
 import com.jqdi.easylogin.core.password.MobilePasswordClient;
 import com.jqdi.easylogin.core.password.UsernamePasswordClient;
-import com.jqdi.easylogin.core.repository.PasswordRepository;
-import com.jqdi.easylogin.core.repository.VerifycodeRepository;
 import com.jqdi.easylogin.core.repository.OauthRepository;
 import com.jqdi.easylogin.core.repository.OauthTempRepository;
+import com.jqdi.easylogin.core.repository.PasswordRepository;
+import com.jqdi.easylogin.core.repository.VerifycodeRepository;
 import com.jqdi.easylogin.core.wx.miniapp.WeixinMiniappClient;
 import com.jqdi.easylogin.core.wx.miniapp.request.BinarywangMaRequest;
 import com.jqdi.easylogin.core.wx.miniapp.request.IMaRequest;
@@ -70,7 +71,7 @@ public class EasyLoginAutoConfiguration {
 	@ConditionalOnMissingBean(name = LoginType.EMAIL_PASSWORD)
 	@ConditionalOnBean(PasswordRepository.class)
 	LoginClient emailPasswordClient(OauthRepository oauthRepository, PasswordRepository passwordRepository) {
-		return new UsernamePasswordClient(oauthRepository, passwordRepository);
+		return new EmailPasswordClient(oauthRepository, passwordRepository);
 	}
 
 	@Bean(LoginType.LOCAL_MOBILE)
@@ -80,7 +81,7 @@ public class EasyLoginAutoConfiguration {
 		String accessKeyId = properties.getAccessKeyId();
 		String accessKeySecret = properties.getAccessKeySecret();
 		String endpoint = properties.getEndpoint();
-		ILocalMobileRequest localMobileRequest = new AliOneKeyLoginRequest(accessKeyId, accessKeySecret, endpoint);
+		ILocalMobileRequest localMobileRequest = new AliyunOneKeyLoginRequest(accessKeyId, accessKeySecret, endpoint);
 		return new LocalMobileClient(oauthRepository, localMobileRequest);
 	}
 
@@ -181,8 +182,8 @@ public class EasyLoginAutoConfiguration {
 		String privateKey = properties.getPrivateKey();
 		String publicKey = properties.getPublicKey();
 
-		IAliMaRequest aliMaRequest = new AlipayMaRequest(aesKey, appid, privateKey, publicKey);
-		return new AlipayMiniappClient(oauthRepository, aliMaRequest);
+		IAlipayMaRequest alipayMaRequest = new AlipayMaRequest(aesKey, appid, privateKey, publicKey);
+		return new AlipayMiniappClient(oauthRepository, alipayMaRequest);
 	}
 
 	@Bean(LoginType.ALIPAY_MINIAPP_MOBILE)
@@ -193,8 +194,8 @@ public class EasyLoginAutoConfiguration {
 		String privateKey = properties.getPrivateKey();
 		String publicKey = properties.getPublicKey();
 
-		IAliMaMobileRequest aliMaMobileRequest = new AlipayMaMobileRequest(appid, privateKey, publicKey);
-		return new AlipayMiniappMobileClient(oauthRepository, aliMaMobileRequest);
+		IAlipayMaMobileRequest alipayMaMobileRequest = new AlipayMaMobileRequest(appid, privateKey, publicKey);
+		return new AlipayMiniappMobileClient(oauthRepository, alipayMaMobileRequest);
 	}
 
 }

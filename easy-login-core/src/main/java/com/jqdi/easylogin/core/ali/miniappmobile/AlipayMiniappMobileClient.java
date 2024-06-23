@@ -4,18 +4,23 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.jqdi.easylogin.core.LoginClient;
 import com.jqdi.easylogin.core.ali.miniappmobile.model.AliMobileUserId;
-import com.jqdi.easylogin.core.ali.miniappmobile.request.IAliMaMobileRequest;
+import com.jqdi.easylogin.core.ali.miniappmobile.request.IAlipayMaMobileRequest;
 import com.jqdi.easylogin.core.constants.IdentityType;
 import com.jqdi.easylogin.core.exception.LoginException;
 import com.jqdi.easylogin.core.repository.OauthRepository;
 
+/**
+ * 支付宝小程序授权登录方式二（本质是拿到手机号登录）
+ * 
+ * @author JQ棣
+ */
 public class AlipayMiniappMobileClient implements LoginClient {
 	private OauthRepository oauthRepository;
-	private IAliMaMobileRequest aliMaMobileRequest;
+	private IAlipayMaMobileRequest alipayMaMobileRequest;
 	
-	public AlipayMiniappMobileClient(OauthRepository oauthRepository, IAliMaMobileRequest aliMaMobileRequest) {
+	public AlipayMiniappMobileClient(OauthRepository oauthRepository, IAlipayMaMobileRequest alipayMaMobileRequest) {
 		this.oauthRepository = oauthRepository;
-		this.aliMaMobileRequest = aliMaMobileRequest;
+		this.alipayMaMobileRequest = alipayMaMobileRequest;
 	}
 	
 	@Override
@@ -24,7 +29,7 @@ public class AlipayMiniappMobileClient implements LoginClient {
 			throw new LoginException("缺失参数");
 		}
 
-		AliMobileUserId aliMobileUserId = aliMaMobileRequest.getPhoneNumber(authcode);
+		AliMobileUserId aliMobileUserId = alipayMaMobileRequest.getPhoneNumber(authcode);
 
 		String mobile = aliMobileUserId.getMobile();
 		

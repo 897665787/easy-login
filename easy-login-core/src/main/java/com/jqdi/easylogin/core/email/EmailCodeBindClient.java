@@ -15,7 +15,7 @@ import com.jqdi.easylogin.core.repository.OauthRepository;
 import com.jqdi.easylogin.core.repository.OauthTempRepository;
 
 /**
- * 邮箱验证码登录（并绑定第三方登录信息）
+ * 邮箱+验证码登录（并绑定第三方登录信息）
  * 
  * <pre>
  * 使用场景：微信APP、微信公众号登录过程中需要绑定邮箱，以邮箱作为系统用户必须的登录方式（如果是以手机号作为必须的登录方式，逻辑类似）

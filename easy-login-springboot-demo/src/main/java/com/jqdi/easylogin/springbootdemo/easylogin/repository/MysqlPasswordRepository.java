@@ -1,4 +1,4 @@
-package com.jqdi.easylogin.springbootdemo.repository;
+package com.jqdi.easylogin.springbootdemo.easylogin.repository;
 
 import org.springframework.stereotype.Component;
 
