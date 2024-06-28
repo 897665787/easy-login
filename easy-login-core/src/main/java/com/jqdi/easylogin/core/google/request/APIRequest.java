@@ -44,7 +44,7 @@ public class APIRequest implements IGoogleRequest {
 
 	/**
 	 * <pre>
-	 * 官网：https://wiki.connect.qq.com/%e4%bd%bf%e7%94%a8authorization_code%e8%8e%b7%e5%8f%96access_token
+	 * 官网：https://developers.google.com/identity/protocols/oauth2?hl=zh-cn
 	 * </pre>
 	 */
 	@Override
