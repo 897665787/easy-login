@@ -45,4 +45,17 @@ public interface OauthRepository {
 	 * @return 用户ID
 	 */
 	String registerUser(String identityType, String identifier, String nickname, String avatar);
+
+	/**
+	 * 注册用户
+	 * 
+	 * @param identityType
+	 *            认证类型,{@link com.jqdi.easylogin.core.constants.IdentityType}
+	 * @param identifier
+	 *            手机号、邮箱、用户名或第三方应用的唯一标识
+	 * @return 用户ID
+	 */
+	default String registerUser(String identityType, String identifier) {
+		return registerUser(identityType, identifier, null, null);
+	}
 }

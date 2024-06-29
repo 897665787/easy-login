@@ -29,7 +29,7 @@ public class LocalMobileClient implements LoginClient {
 		}
 		// 通过3大运营商获取本机手机号码，可直接使用
 		String mobile = localMobileRequest.getMobile(accessToken);
-		String userId = oauthRepository.registerUser(IdentityType.MOBILE, mobile, null, null);
+		String userId = oauthRepository.registerUser(IdentityType.MOBILE, mobile);
 		return userId;
 	}
 }

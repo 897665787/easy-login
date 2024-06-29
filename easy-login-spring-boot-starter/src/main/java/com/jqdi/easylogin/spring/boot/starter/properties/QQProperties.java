@@ -7,9 +7,9 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 @Data
-@ConfigurationProperties(prefix = "easylogin.weixin-mp")
+@ConfigurationProperties(prefix = "easylogin.qq")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class WeixinMpProperties {
+public class QQProperties {
 	String appid;
-	String secret;
+	String appkey;
 }

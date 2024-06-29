@@ -38,7 +38,7 @@ public class EmailCodeClient implements LoginClient {
 		String userId = oauthRepository.getUserId(IdentityType.EMAIL, email);
 		if (userId == null) {// 账号不存在
 			// 创建新用户
-			userId = oauthRepository.registerUser(IdentityType.EMAIL, email, null, null);
+			userId = oauthRepository.registerUser(IdentityType.EMAIL, email);
 		}
 
 		return userId;

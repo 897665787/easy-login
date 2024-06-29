@@ -24,6 +24,9 @@ import com.jqdi.easylogin.core.mobile.request.ILocalMobileRequest;
 import com.jqdi.easylogin.core.password.EmailPasswordClient;
 import com.jqdi.easylogin.core.password.MobilePasswordClient;
 import com.jqdi.easylogin.core.password.UsernamePasswordClient;
+import com.jqdi.easylogin.core.qq.QQClient;
+import com.jqdi.easylogin.core.qq.request.APIRequest;
+import com.jqdi.easylogin.core.qq.request.IQQRequest;
 import com.jqdi.easylogin.core.repository.OauthRepository;
 import com.jqdi.easylogin.core.repository.OauthTempRepository;
 import com.jqdi.easylogin.core.repository.PasswordRepository;
@@ -41,6 +44,7 @@ import com.jqdi.easylogin.core.wx.mp.request.IMpRequest;
 import com.jqdi.easylogin.spring.boot.starter.properties.AlipayMiniappMobileProperties;
 import com.jqdi.easylogin.spring.boot.starter.properties.AlipayMiniappProperties;
 import com.jqdi.easylogin.spring.boot.starter.properties.LocalMobileProperties;
+import com.jqdi.easylogin.spring.boot.starter.properties.QQProperties;
 import com.jqdi.easylogin.spring.boot.starter.properties.WeixinAppProperties;
 import com.jqdi.easylogin.spring.boot.starter.properties.WeixinMiniappMobileProperties;
 import com.jqdi.easylogin.spring.boot.starter.properties.WeixinMiniappProperties;
@@ -50,7 +54,7 @@ import com.jqdi.easylogin.spring.boot.starter.properties.WeixinMpProperties;
 @ConditionalOnBean(OauthRepository.class)
 @EnableConfigurationProperties({ LocalMobileProperties.class, WeixinAppProperties.class, WeixinMiniappProperties.class,
 		WeixinMiniappMobileProperties.class, WeixinMpProperties.class, AlipayMiniappProperties.class,
-		AlipayMiniappMobileProperties.class })
+		AlipayMiniappMobileProperties.class, QQProperties.class })
 public class EasyLoginAutoConfiguration {
 
 	@Bean(LoginType.USERNAME_PASSWORD)
@@ -123,10 +127,8 @@ public class EasyLoginAutoConfiguration {
 			WeixinAppProperties properties) {
 		String appid = properties.getAppid();
 		String secret = properties.getSecret();
-		String token = properties.getToken();
-		String aesKey = properties.getAesKey();
 
-		IMpRequest mpRequest = new BinarywangMpRequest(appid, secret, token, aesKey);
+		IMpRequest mpRequest = new BinarywangMpRequest(appid, secret);
 		return new WeixinAppClient(oauthRepository, oauthTempRepository, mpRequest);
 	}
 
@@ -136,11 +138,8 @@ public class EasyLoginAutoConfiguration {
 	LoginClient weixinMiniappClient(OauthRepository oauthRepository, WeixinMiniappProperties properties) {
 		String appid = properties.getAppid();
 		String secret = properties.getSecret();
-		String token = properties.getToken();
-		String aesKey = properties.getAesKey();
-		String msgDataFormat = properties.getMsgDataFormat();
 
-		IMaRequest maRequest = new BinarywangMaRequest(appid, secret, token, aesKey, msgDataFormat);
+		IMaRequest maRequest = new BinarywangMaRequest(appid, secret);
 		return new WeixinMiniappClient(oauthRepository, maRequest);
 	}
 
@@ -150,11 +149,8 @@ public class EasyLoginAutoConfiguration {
 	LoginClient weixinMiniappMobileClient(OauthRepository oauthRepository, WeixinMiniappMobileProperties properties) {
 		String appid = properties.getAppid();
 		String secret = properties.getSecret();
-		String token = properties.getToken();
-		String aesKey = properties.getAesKey();
-		String msgDataFormat = properties.getMsgDataFormat();
 
-		IMaMobileRequest maRequest = new BinarywangMaMobileRequest(appid, secret, token, aesKey, msgDataFormat);
+		IMaMobileRequest maRequest = new BinarywangMaMobileRequest(appid, secret);
 		return new WeixinMiniappMobileClient(oauthRepository, maRequest);
 	}
 
@@ -166,10 +162,8 @@ public class EasyLoginAutoConfiguration {
 			WeixinMpProperties properties) {
 		String appid = properties.getAppid();
 		String secret = properties.getSecret();
-		String token = properties.getToken();
-		String aesKey = properties.getAesKey();
 
-		IMpRequest mpRequest = new BinarywangMpRequest(appid, secret, token, aesKey);
+		IMpRequest mpRequest = new BinarywangMpRequest(appid, secret);
 		return new WeixinMpClient(oauthRepository, oauthTempRepository, mpRequest);
 	}
 
@@ -196,6 +190,18 @@ public class EasyLoginAutoConfiguration {
 
 		IAlipayMaMobileRequest alipayMaMobileRequest = new AlipayMaMobileRequest(appid, privateKey, publicKey);
 		return new AlipayMiniappMobileClient(oauthRepository, alipayMaMobileRequest);
+	}
+
+	@Bean(LoginType.QQ)
+	@ConditionalOnMissingBean(name = LoginType.QQ)
+	@ConditionalOnProperty(prefix = "easylogin.qq", name = "appid")
+	LoginClient qqClient(OauthRepository oauthRepository, OauthTempRepository oauthTempRepository,
+			QQProperties properties) {
+		String appid = properties.getAppid();
+		String appkey = properties.getAppkey();
+
+		IQQRequest qqRequest = new APIRequest(appid, appkey);
+		return new QQClient(oauthRepository, oauthTempRepository, qqRequest);
 	}
 
 }

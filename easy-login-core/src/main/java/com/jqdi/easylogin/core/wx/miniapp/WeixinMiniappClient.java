@@ -38,7 +38,7 @@ public class WeixinMiniappClient implements LoginClient {
 		String userId = oauthRepository.getUserId(IdentityType.MOBILE, mobile);
 		if (userId == null) {// 账号不存在
 			// 创建新用户
-			userId = oauthRepository.registerUser(IdentityType.MOBILE, mobile, null, null);
+			userId = oauthRepository.registerUser(IdentityType.MOBILE, mobile);
 		}
 
 		// 绑定用户与openid,unionid关系

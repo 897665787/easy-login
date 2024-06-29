@@ -12,7 +12,4 @@ import lombok.experimental.FieldDefaults;
 public class WeixinMiniappMobileProperties {
 	String appid;
 	String secret;
-	String token;
-	String aesKey;
-	String msgDataFormat;
 }

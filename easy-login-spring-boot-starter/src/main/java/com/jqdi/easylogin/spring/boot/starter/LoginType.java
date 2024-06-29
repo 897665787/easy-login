@@ -19,4 +19,6 @@ public interface LoginType {
 
 	String ALIPAY_MINIAPP = "alipayMiniapp";// 支付宝小程序授权登录，方式一
 	String ALIPAY_MINIAPP_MOBILE = "alipayMiniappMobile";// 支付宝小程序授权登录，方式二
+	
+	String QQ = "qq";// QQ授权登录
 }

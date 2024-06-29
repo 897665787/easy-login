@@ -18,14 +18,21 @@
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
 		    <artifactId>lombok</artifactId>
-			<version>1.18.26</version>
+			<version>1.18.32</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-lang3</artifactId>
-		    <version>3.12.0</version>
+		    <version>3.14.0</version>
 		</dependency>
+		<!-- ################## json ################## -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.17.1</version>
+		</dependency>
+		<!-- ################## json ################## -->
 		<!-- 工具依赖 -->
 
 		<!-- 阿里云：本机号码一键登录 -->
@@ -39,14 +46,14 @@
 		<dependency>
 			<groupId>com.github.binarywang</groupId>
 			<artifactId>weixin-java-miniapp</artifactId>
-			<version>4.3.0</version>
+			<version>4.6.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- binarywang：微信公众号/APP授权登录 -->
 		<dependency>
 			<groupId>com.github.binarywang</groupId>
 			<artifactId>weixin-java-mp</artifactId>
-			<version>4.3.0</version>
+			<version>4.6.0</version>
 			<scope>provided</scope>
 		</dependency>
 		
@@ -54,7 +61,7 @@
         <dependency>
             <groupId>com.alipay.sdk</groupId>
             <artifactId>alipay-sdk-java</artifactId>
-            <version>4.35.0.ALL</version>
+            <version>4.39.113.ALL</version>
             <scope>provided</scope>
         </dependency>
 

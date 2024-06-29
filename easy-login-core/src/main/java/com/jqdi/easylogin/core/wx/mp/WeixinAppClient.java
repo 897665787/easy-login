@@ -81,23 +81,22 @@ public class WeixinAppClient implements LoginClient {
 			if (userinfo == null) {
 				userinfo = mpRequest.getUserinfo(accessToken, openid);
 			}
-			// 存储MobileBindAuthCode相关信息
-			BindAuthCode mobileBindAuthCode = new BindAuthCode();
-			mobileBindAuthCode.setNickname(Optional.ofNullable(userinfo).map(MpUserInfo::getNickname).orElse(null));
-			mobileBindAuthCode.setHeadimgurl(Optional.ofNullable(userinfo).map(MpUserInfo::getHeadimgurl).orElse(null));
+			// 存储BindAuthCode相关信息
+			BindAuthCode bindAuthCode = new BindAuthCode();
+			bindAuthCode.setNickname(Optional.ofNullable(userinfo).map(MpUserInfo::getNickname).orElse(null));
+			bindAuthCode.setHeadimgurl(Optional.ofNullable(userinfo).map(MpUserInfo::getHeadimgurl).orElse(null));
 			List<BindUserOauth> binds = Lists.newArrayList();
 			binds.add(new BindUserOauth().setIdentityType(IdentityType.WX_OPENID_APP)
 					.setIdentifier(openid));
 			binds.add(
 					new BindUserOauth().setIdentityType(IdentityType.WX_UNIONID).setIdentifier(unionid));
-			mobileBindAuthCode.setBinds(binds);
-			oauthTempRepository.saveBindAuthCode(wxcode, mobileBindAuthCode);
+			bindAuthCode.setBinds(binds);
+			oauthTempRepository.saveBindAuthCode(wxcode, bindAuthCode);
 			
 			// 微信没有绑定账号
 			return null;
 		}
 
-		// 通过解密微信的密文获取手机号码，可直接使用
 		return userId;
 	}
 }

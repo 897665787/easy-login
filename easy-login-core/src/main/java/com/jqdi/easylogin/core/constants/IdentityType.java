@@ -19,6 +19,7 @@ public interface IdentityType {
 	// 支付宝授权登录
 	String ALI_USERID_MINIAPP = "ali-userid-miniapp";// 支付宝小程序userId
 
+	// QQ
+	String QQ_OPENID = "qq-openid";// QQ openid
 	// String SINA = "sina";// 新浪微博
-	// String QQ = "qq";// QQ
 }

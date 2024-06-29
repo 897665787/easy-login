@@ -20,13 +20,10 @@ public class BinarywangMaMobileRequest implements IMaMobileRequest {
 
 	private WxMaService wxMaService;
 
-	public BinarywangMaMobileRequest(String appid, String secret, String token, String aesKey, String msgDataFormat) {
+	public BinarywangMaMobileRequest(String appid, String secret) {
 		WxMaDefaultConfigImpl config = new WxMaDefaultConfigImpl();
 		config.setAppid(appid);
 		config.setSecret(secret);
-		config.setToken(token);
-		config.setAesKey(aesKey);
-		config.setMsgDataFormat(msgDataFormat);
 
 		wxMaService = new WxMaServiceImpl();
 		wxMaService.setWxMaConfig(config);

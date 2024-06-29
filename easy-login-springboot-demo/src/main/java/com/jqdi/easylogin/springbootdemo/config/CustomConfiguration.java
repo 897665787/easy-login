@@ -23,11 +23,8 @@ public class CustomConfiguration {
 	LoginClient weixinMiniappService(OauthRepository oauthRepository) {
 		String appid = "aaa";
 		String secret = "aaa";
-		String token = "";
-		String aesKey = "";
-		String msgDataFormat = "";
 
-		IMaRequest maRequest = new BinarywangMaRequest(appid, secret, token, aesKey, msgDataFormat);
+		IMaRequest maRequest = new BinarywangMaRequest(appid, secret);
 		return new WeixinMiniappClient(oauthRepository, maRequest);
 	}
 }

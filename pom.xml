@@ -8,7 +8,7 @@
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
-	<description>登录/授权</description>
+	<description>登录</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

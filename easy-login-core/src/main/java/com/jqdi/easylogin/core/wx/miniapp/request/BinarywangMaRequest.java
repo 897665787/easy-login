@@ -23,13 +23,10 @@ public class BinarywangMaRequest implements IMaRequest {
 
 	private WxMaService wxMaService;
 
-	public BinarywangMaRequest(String appid, String secret, String token, String aesKey, String msgDataFormat) {
+	public BinarywangMaRequest(String appid, String secret) {
 		WxMaDefaultConfigImpl config = new WxMaDefaultConfigImpl();
 		config.setAppid(appid);
 		config.setSecret(secret);
-		config.setToken(token);
-		config.setAesKey(aesKey);
-		config.setMsgDataFormat(msgDataFormat);
 
 		wxMaService = new WxMaServiceImpl();
 		wxMaService.setWxMaConfig(config);

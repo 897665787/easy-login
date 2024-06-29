@@ -14,7 +14,7 @@
 | 微信授权登录（小程序）     | √      |
 | 微信授权登录（公众号）     | √      |
 | 支付宝授权登录（小程序）   | √      |
-| QQ授权登录                 | ✘      |
+| QQ授权登录                 | √      |
 | 新浪微博授权登录           | ✘      |
 | 国外（如google）授权登录   | ✘      |
 
@@ -51,6 +51,7 @@ easy-login
 | 微信授权登录（公众号）     | WeixinMpClient                | 配置easylogin.weixinMp.appid                |
 | 支付宝授权登录（小程序）   | AlipayMiniappClient           | 配置easylogin.alipayMiniapp.appid           |
 | 支付宝授权登录（小程序）   | AlipayMiniappMobileClient     | 配置easylogin.alipayMiniappMobile.appid     |
+| QQ授权登录   				 | QQClient     				 | 配置easylogin.qq.appid     				   |
 
 ### 使用说明
 
@@ -69,7 +70,7 @@ mvn install，使用maven将源码编译成jar包并且安装到本地仓库，�
 <dependency>
 	<groupId>com.github.binarywang</groupId>
 	<artifactId>weixin-java-miniapp</artifactId>
-	<version>4.3.0</version>
+	<version>4.6.0</version>
 	<scope>provided</scope>
 </dependency>
 ```
@@ -79,9 +80,6 @@ easylogin:
   weixinMiniappMobile: # 微信小程序登录方式二
     appid: 1111 #微信小程序的appid
     secret: 1111 #微信小程序的Secret
-    token: 1111 #微信小程序消息服务器配置的token
-    aesKey: 1111 #微信小程序消息服务器配置的EncodingAESKey
-    msgDataFormat: JSON
 ```
 #### 4：在代码中使用
 ```

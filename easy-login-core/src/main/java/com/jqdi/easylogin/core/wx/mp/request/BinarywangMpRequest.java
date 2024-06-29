@@ -27,12 +27,10 @@ public class BinarywangMpRequest implements IMpRequest {
 
 	private WxMpService wxMpService;
 
-	public BinarywangMpRequest(String appid, String secret, String token, String aesKey) {
+	public BinarywangMpRequest(String appid, String secret) {
 		WxMpDefaultConfigImpl config = new WxMpDefaultConfigImpl();
 		config.setAppId(appid);
 		config.setSecret(secret);
-		config.setToken(token);
-		config.setAesKey(aesKey);
 
 		wxMpService = new WxMpServiceImpl();
 

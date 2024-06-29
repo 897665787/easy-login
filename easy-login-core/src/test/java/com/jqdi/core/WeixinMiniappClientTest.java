@@ -14,11 +14,8 @@ public class WeixinMiniappClientTest {
 		
 		String appid = "51s3ad13sa1d";
 		String secret = "LTAIkcl1bVhsEpGf";
-		String token = "";
-		String aesKey = "";
-		String msgDataFormat = "";
 
-		IMaRequest maRequest = new BinarywangMaRequest(appid, secret, token, aesKey, msgDataFormat);
+		IMaRequest maRequest = new BinarywangMaRequest(appid, secret);
 		LoginClient loginClient = new WeixinMiniappClient(oauthRepository, maRequest);
 
 		String encryptedData = "aaaaaaaaa";

@@ -12,6 +12,4 @@ import lombok.experimental.FieldDefaults;
 public class WeixinAppProperties {
 	String appid;
 	String secret;
-	String token;
-	String aesKey;
 }

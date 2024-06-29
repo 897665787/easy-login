@@ -26,7 +26,7 @@ public class QQClient implements LoginClient {
 		String userId = oauthRepository.getUserId("qq", mobile);
 		if (userId == null) {// 账号不存在
 			// 创建新用户
-			userId = oauthRepository.registerUser("qq", mobile, null, null);
+			userId = oauthRepository.registerUser("qq", mobile);
 		}
 
 		// 绑定用户与openid关系
